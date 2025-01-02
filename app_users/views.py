@@ -2,7 +2,6 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from .form import *
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def editar_cliente(request,id):
@@ -16,19 +15,38 @@ def editar_cliente(request,id):
     else:
         form = UserForm(instance=cliente)
 
-    return render(request,'users/user_form.html',{'form':form})
+    return render(request,'users/cliente_form.html',{'form':form})
 
-def cadastro_usuario(request):
+
+def cadastro_cliente(request):
     if request.method == 'POST':
-        form = UserForm(request.POST,request.FILES)
+        form = ClienteForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            form = UserForm()
+            form = ClienteForm()
             return redirect('login')
     else:
-        form = UserForm()
+        form = ClienteForm()
 
-    return render(request, "users/user_form.html", {'form': form})
+    return render(request, "users/cliente_form.html", {'form': form})
 
+
+def cadastro_admin(request):
+    if request.method == 'POST':
+        form = AdminForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            form = AdminForm()
+            return redirect('login')
+    else:
+        form = AdminForm()
+
+    return render(request, "users/admin_form.html", {'form': form})
+
+
+def perfil(request):    
+    cliente = Cliente.objects.filter(nome=request.user.username).first()
+    return render(request, "users/perfil.html",{'cliente': cliente})
+        
 # -----------------------------------------------------------------------------------------------------    
 

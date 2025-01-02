@@ -17,7 +17,7 @@ def index(request, servico):
     except EmptyPage:
         pag_obj = paginador.page(paginador.num_pages)
 
-    context = {'prduct': product, 'pag_obj': pag_obj}
+    context = {'product': product, 'pag_obj': pag_obj}
     return render(request, "ecommerce/index.html",context)
 
 
@@ -63,7 +63,7 @@ def product(request, id):
     return render(request, "ecommerce/product.html",context)
 
 
-def listar(request, filtro):
+def product_listar(request, filtro):
     profissional = Profissional.objects.filter(filtro=filtro)
     itens_por_pagina = 3
     paginador = Paginator(profissional, itens_por_pagina)  
@@ -75,8 +75,8 @@ def listar(request, filtro):
     except EmptyPage:
         pag_obj = paginador.page(paginador.num_pages)
 
-    context = {'profissional': profissional, 'filtro': filtro  'pag_obj': pag_obj}  
-    return render(request, "servicos/listar_profissionais.html",context)
+    context = {'profissional': profissional, 'filtro': filtro,  'pag_obj': pag_obj}  
+    return render(request, "servicos/listar_admin.html",context)
 
 
 def buscar_produto(request):
@@ -91,4 +91,4 @@ def buscar_produto(request):
         products = Products.objects.all()
 
     context = {'products': products, 'nome': nome}
-    return render(request, 'ecommerce/listar.html', context)
+    return render(request, 'ecommerce/listar_products.html', context)
