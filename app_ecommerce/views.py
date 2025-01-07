@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def index(request, servico):
+def index(request):
     products = Products.objects.all()
     itens_por_pagina = 5
     paginador = Paginator(products, itens_por_pagina)  
@@ -76,10 +76,10 @@ def product_listar(request, filtro):
         pag_obj = paginador.page(paginador.num_pages)
 
     context = {'profissional': profissional, 'filtro': filtro,  'pag_obj': pag_obj}  
-    return render(request, "servicos/listar_admin.html",context)
+    return render(request, "ecommerce/listar_admin.html",context)
 
 
-def buscar_produto(request):
+def search_product(request):
     nome = None 
     if 'q' in request.GET:
         print('entrou no if')
@@ -92,3 +92,21 @@ def buscar_produto(request):
 
     context = {'products': products, 'nome': nome}
     return render(request, 'ecommerce/listar_products.html', context)
+
+def admin_listar(request, filtro):
+    if filtro is None:
+        profissional = Profissional.objects.filter(filtro=filtro)
+    else:
+        profissional = Profissional.objects.all()
+    itens_por_pagina = 3
+    paginador = Paginator(profissional, itens_por_pagina)  
+    pagina = request.GET.get('page')
+    try:
+        pag_obj = paginador.page(pagina)
+    except PageNotAnInteger:
+        pag_obj = paginador.page(1)
+    except EmptyPage:
+        pag_obj = paginador.page(paginador.num_pages)
+
+    context = {'profissional': profissional, 'filtro': filtro,  'pag_obj': pag_obj}  
+    return render(request, "ecommerce/listar_products.html",context)

@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from .form import *
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 
 def editar_cliente(request,id):
@@ -49,4 +50,6 @@ def perfil(request):
     return render(request, "users/perfil.html",{'cliente': cliente})
         
 # -----------------------------------------------------------------------------------------------------    
-
+def logout_view(request):
+    logout(request)  
+    return redirect('index')  
