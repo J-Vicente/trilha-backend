@@ -19,7 +19,6 @@ class Cliente(models.Model):
 
     def save(self, *args, **kwargs):
         novo_usuario = User.objects.create_user(self.nome, self.email, self.senha)
-        novo_usuario.save()
         grupo_clientes, created = Group.objects.get_or_create(name='clientes')
         novo_usuario.groups.add(grupo_clientes)
         super(Cliente, self).save(*args, **kwargs)

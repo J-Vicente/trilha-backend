@@ -1,4 +1,21 @@
 {% extends 'base.html' %}
+  {% block style %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'ecommerce/Style.css' %}">
+  {% endblock %}
+  
   {% block content %} 
-
+     
+    <div class="flex">
+      <img  src="{{ products.imagem.url }}" alt="">
+      <div class="flex">
+          <div >
+              <h2>{{ products.nome }}</h2>                
+              <h3>{{ products.preco }} R$</h3>
+              <h3>{{ products.marca }}</h3>
+              <p>{{ products.descricao }}</p>
+          </div>
+      </div>
+    </div>
+    
   {% endblock %}

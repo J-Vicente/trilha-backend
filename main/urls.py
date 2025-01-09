@@ -27,15 +27,15 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('perfil/', perfil, name='perfil'),
     path('cadastro/cliente/',cadastro_cliente, name='cadastro_cliente'),
-    path('admin/cadastro/admin/', cadastro_admin, name='cadastro_admin'),
+    path('cadastro/admin/', cadastro_admin, name='cadastro_admin'),
     path('admin/', admin.site.urls),
     path('product/<int:id>/',product,name='product'),  
     path('listar/',product_listar,name='product_listar'),  
     path('search_product/',search_product,name='search_product'), 
-    path('admin/listar/',admin_listar,name='admin_listar'),
-    path('admin/product/',product_criar,name='product_criar'),
-    path('admin/product/editar/<int:id>/',product_editar, name='product_editar'),
-    path('admin/product/remover/<int:id>/',product_remover,name='product_remover'),
+    path('admin_listar/',admin_listar,name='admin_listar'),
+    path('new_product/',product_criar,name='product_criar'),
+    path('roduct/editar/<int:id>/',product_editar, name='product_editar'),
+    path('product/remover/<int:id>/',product_remover,name='product_remover'),
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

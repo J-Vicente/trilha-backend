@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
+  {% block style %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'ecommerce/Style.css' %}">
+  {% endblock %}
+  
   {% block content %} 
+  <div class="flex">
+    <div>
+        <div class="flex">
+            <h2 style="font-size: xx-large;"> Cadastro de Produto</h2>
+        </div>
+        <div class="flex">        
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="nome" class="form-label">Nome</label>
+                    {{ form.nome }}
+                </div>
+                
+                <div>
+                    <label for="nome" class="form-label">Preço</label>
+                    {{ form.preco }}
+                </div>
 
+                <div>
+                    <label for="nome" class="form-label">Marca</label>
+                    {{ form.marca }}
+                </div>
+                
+                <div>
+                    <label for="nome" class="form-label">Descrição</label>
+                    {{ form.descricao }}
+                </div>
+
+                <div>
+                    <label for="nome" class="form-label">Imagem</label>
+                    {{ form.imagem }}
+                </div>
+
+                <div>               
+                    <button type="submit" class="btn enviar">Confirmar</button>
+                </div>
+            </form> 
+        </div>                       
+        </div>
+    </div>
+</div>
   {% endblock %}
