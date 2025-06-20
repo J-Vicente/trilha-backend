@@ -5,5 +5,29 @@
   {% endblock %}
   
   {% block content %} 
-
+    {% for i in products %}   
+      <div >
+          <a href="{% url 'product' i.id %}"> 
+              <div class="flex" >
+                  <h2 >{{ i.nome }}</h2>
+              </div>
+                  <img src="{{ i.imagem.url }}" alt="">
+                  <h3 style="color: aqua;">{{ i.preco }} R$</h3>
+                  <h3>{{ i.marca }}</h3>
+                  <p>{{ i.descricao }}</p>
+              </a>
+              <div class="flex">
+                <a href="{% url 'product_editar' i.id %}">
+                    <div class="flex">
+                        <p >Editar</p>
+                    </div>
+                </a>
+                <a href="{% url 'product_remover' i.id %}">
+                    <div class="flex">
+                        <p>Remover</p>
+                    </div>
+                </a>
+            </div>    
+      </div>
+      {% endfor %}
   {% endblock %}

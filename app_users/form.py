@@ -24,7 +24,7 @@ class ClienteForm(ModelForm):
         }
 
 
-class adminForm(ModelForm):
+class AdminForm(ModelForm):
 
     class Meta:       
         model = Cliente

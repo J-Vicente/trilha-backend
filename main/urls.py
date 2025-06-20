@@ -30,11 +30,11 @@ urlpatterns = [
     path('cadastro/admin/', cadastro_admin, name='cadastro_admin'),
     path('admin/', admin.site.urls),
     path('product/<int:id>/',product,name='product'),  
-    path('listar/',product_listar,name='product_listar'),  
+    path('listar/<str:filtro>',product_listar,name='product_listar'),  
     path('search_product/',search_product,name='search_product'), 
     path('admin_listar/',admin_listar,name='admin_listar'),
     path('new_product/',product_criar,name='product_criar'),
-    path('roduct/editar/<int:id>/',product_editar, name='product_editar'),
+    path('product/editar/<int:id>/',product_editar, name='product_editar'),
     path('product/remover/<int:id>/',product_remover,name='product_remover'),
     
 

@@ -18,7 +18,7 @@ def index(request):
         pag_obj = paginador.page(paginador.num_pages)
 
     is_admin = request.user.groups.filter(name="administradores").exists()
-    context = {'product': product, 'pag_obj': pag_obj, 'is_admin': is_admin}
+    context = {'products': products, 'pag_obj': pag_obj, 'is_admin': is_admin}
     return render(request, "ecommerce/index.html",context)
 
 
@@ -65,9 +65,9 @@ def product(request, id):
 
 
 def product_listar(request, filtro):
-    profissional = Profissional.objects.filter(filtro=filtro)
+    products = Products.objects.filter(marca=filtro)
     itens_por_pagina = 3
-    paginador = Paginator(profissional, itens_por_pagina)  
+    paginador = Paginator(products, itens_por_pagina)  
     pagina = request.GET.get('page')
     try:
         pag_obj = paginador.page(pagina)
@@ -76,14 +76,16 @@ def product_listar(request, filtro):
     except EmptyPage:
         pag_obj = paginador.page(paginador.num_pages)
 
-    context = {'profissional': profissional, 'filtro': filtro,  'pag_obj': pag_obj}  
-    return render(request, "ecommerce/listar_admin.html",context)
+    context = {'products': products, 'marca': filtro,  'pag_obj': pag_obj}  
+    return render(request, "ecommerce/listar_products.html",context)
 
 
 def search_product(request):
     nome = None 
     if 'q' in request.GET:
+        print('entrou no if')
         termo_pesquisa = request.GET['q']
+        print(termo_pesquisa)
         products = Products.objects.buscar_por_nome(termo_pesquisa)
         nome = termo_pesquisa 
     else:

@@ -27,7 +27,7 @@
                   Categorias
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="">Babá</a></li>
+                  <li><a class="dropdown-item" href="{% url 'product_listar' filtro='Samsung' %}">Marca</a></li>
                   <li><a class="dropdown-item" href="">Cozinheiro(a)</a></li>
                   <li><a class="dropdown-item" href="">Eletricista</a></li>
                   <li><a class="dropdown-item" href="">Encanador(a)</a></li>
@@ -61,8 +61,8 @@
               {% endif %}
                  
             </ul>
-            <form class="d-flex" role="search" method="GET" action="">
-              <input class="form-control me-2" type="search" placeholder="Busque por produtos..." aria-label="Search">
+            <form class="d-flex" role="search" method="GET" action="{% url 'search_product' %}">
+              <input name='q' class="form-control me-2" type="search" placeholder="Busque por produtos..." aria-label="Search">
               <button class="btn btn-success" type="submit">Buscar</button>
             </form>
           </div>
