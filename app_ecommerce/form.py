@@ -9,8 +9,9 @@ class ProductsForm(ModelForm):
         fields = '__all__'
         widgets = {
             'nome' : forms.TextInput(attrs={'class': 'form-control' }),
-            'marca' : forms.TextInput(attrs={'class': 'form-control' }),
+            'marca' : forms.TextInput(attrs={'class': 'form-control' }),        
             'preco' : forms.NumberInput(attrs={'class': 'form-control' }),
+            'categoria' : forms.TextInput(attrs={'class': 'form-control' }),  
             'descricao' : forms.TextInput(attrs={'class': 'form-control' }),
             'imagem': forms.ClearableFileInput(attrs={'class': 'form-control' })
         }
