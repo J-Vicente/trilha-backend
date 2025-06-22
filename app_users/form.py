@@ -35,6 +35,7 @@ class AdminForm(ModelForm):
             'email' : forms.EmailInput(attrs={'class': 'form-control' }),
             'foto_perfil': forms.ClearableFileInput(attrs={'class': 'form-control' }),
             'cpf' : forms.TextInput(attrs={'class': 'form-control' }),
+            'celular' : forms.TextInput(attrs={'class': 'form-control' }),
             # 'endereco' : forms.TextInput(attrs={'class': 'form-control' }),
             # 'cep' : forms.TextInput(attrs={'class': 'form-control' }),
             # 'cidade' : forms.TextInput(attrs={'class': 'form-control' }),

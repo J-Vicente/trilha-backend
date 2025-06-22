@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, Group
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
     sobrenome = models.CharField(max_length=100)
-    senha = models.CharField(max_length=15, default='senha123')
+    senha = models.CharField(max_length=15)
     email = models.EmailField()
     foto_perfil = models.ImageField(upload_to='images')
     celular = models.CharField(max_length=11)
