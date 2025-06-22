@@ -5,50 +5,73 @@
   {% endblock %}
   
   {% block content %} 
-  <div class="flex">
-    <div>
-        <div class="flex">
-            <h2 style="font-size: xx-large;"> Cadastro de Produto</h2>
-        </div>
-        <div class="flex">        
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div>
-                    <label for="nome" class="form-label">Nome</label>
-                    {{ form.nome }}
-                </div>
-                
-                <div>
-                    <label for="nome" class="form-label">Preço</label>
-                    {{ form.preco }}
-                </div>
+    <div class="container mt-4" style="margin-bottom: 130px;">
+        <h2 class="mb-4">Cadastrar Novo Produto</h2>
 
-                <div>
-                    <label for="nome" class="form-label">Marca</label>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="{{ form.nome.id_for_label }}" class="form-label">Nome</label>
+                {{ form.nome }}
+                {% for error in form.nome.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="{{ form.marca.id_for_label }}" class="form-label">Marca</label>
                     {{ form.marca }}
+                    {% for error in form.marca.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
                 </div>
-                
-                <div>
-                    <label for="nome" class="form-label">Categoria</label>
+                <div class="col-md-6 mb-3">
+                    <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoria</label>
                     {{ form.categoria }}
+                    {% for error in form.categoria.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
                 </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="{{ form.preco.id_for_label }}" class="form-label">Preço</label>
+                    {{ form.preco }}
+                    {% for error in form.preco.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="{{ form.quantidade.id_for_label }}" class="form-label">Quantidade</label>
+                    {{ form.quantidade }}
+                    {% for error in form.quantidade.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
 
-                <div>
-                    <label for="nome" class="form-label">Descrição</label>
-                    {{ form.descricao }}
-                </div>
+            <div class="mb-3">
+                <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
+                {{ form.descricao }}
+                {% for error in form.descricao.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
 
-                <div>
-                    <label for="nome" class="form-label">Imagem</label>
-                    {{ form.imagem }}
-                </div>
+            <div class="mb-3">
+                <label for="{{ form.imagem.id_for_label }}" class="form-label">Imagem</label>
+                {{ form.imagem }}
+                {% for error in form.imagem.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
 
-                <div>               
-                    <button type="submit" class="btn enviar">Confirmar</button>
-                </div>
-            </form> 
-        </div>                       
-        </div>
+            <button type="submit" class="btn btn-success">Salvar Produto</button>
+            <a href="{% url 'admin_listar' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
-</div>
   {% endblock %}
+  

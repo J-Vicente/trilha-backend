@@ -57,15 +57,18 @@ def product_criar(request):
 
 
 def product(request, id):
-    products = get_object_or_404(Products,id=id)
+    product = get_object_or_404(Products,id=id)
     context ={
-        'products':products
+        'product':product
     }
     return render(request, "ecommerce/product.html",context)
 
 
-def product_listar(request, filtro):
-    products = Products.objects.filter(marca=filtro)
+def product_listar(request, filtro, tipo):
+    if tipo=='marca':
+        products = Products.objects.filter(marca=filtro)
+    if tipo=='categoria':
+        products = Products.objects.filter(categoria=filtro)
     itens_por_pagina = 3
     paginador = Paginator(products, itens_por_pagina)  
     pagina = request.GET.get('page')
@@ -76,7 +79,7 @@ def product_listar(request, filtro):
     except EmptyPage:
         pag_obj = paginador.page(paginador.num_pages)
 
-    context = {'products': products, 'marca': filtro,  'pag_obj': pag_obj}  
+    context = {'products': products, 'filtro': filtro,  'pag_obj': pag_obj}  
     return render(request, "ecommerce/listar_products.html",context)
 
 

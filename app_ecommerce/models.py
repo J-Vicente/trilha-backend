@@ -9,6 +9,7 @@ class Products(models.Model):
     nome = models.CharField(max_length=150)
     marca = models.CharField(max_length=100)
     preco = models.FloatField()
+    quantidade = models.IntegerField(default=0)    
     categoria = models.CharField(max_length=100, default='')
     descricao = models.TextField(max_length=500)
     imagem = models.ImageField(upload_to='images')

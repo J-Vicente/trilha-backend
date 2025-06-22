@@ -30,7 +30,7 @@ urlpatterns = [
     path('cadastro/admin/', cadastro_admin, name='cadastro_admin'),
     path('admin/', admin.site.urls),
     path('product/<int:id>/',product,name='product'),  
-    path('listar/<str:filtro>',product_listar,name='product_listar'),  
+    path('listar/<str:tipo>/<str:filtro>',product_listar,name='product_listar'),  
     path('search_product/',search_product,name='search_product'), 
     path('admin_listar/',admin_listar,name='admin_listar'),
     path('new_product/',product_criar,name='product_criar'),
@@ -39,3 +39,6 @@ urlpatterns = [
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

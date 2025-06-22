@@ -6,16 +6,35 @@
   
   {% block content %} 
      
-    <div class="flex">
-      <img  src="{{ products.imagem.url }}" alt="">
-      <div class="flex">
-          <div >
-              <h2>{{ products.nome }}</h2>                
-              <h3>{{ products.preco }} R$</h3>
-              <h3>{{ products.marca }}</h3>
-              <p>{{ products.descricao }}</p>
-          </div>
-      </div>
+    <div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-6">
+            <img src="{{ product.imagem.url }}" alt="{{ product.nome }}" class="img-fluid rounded shadow-sm w-100">
+        </div>
+
+
+        <div class="col-md-6">
+            <h2>{{ product.nome }}</h2>
+            <p class="text-muted">Marca: {{ product.marca }} | Categoria: {{ product.categoria }}</p>
+            <h4 class="text-success">R$ {{ product.preco }}</h4>
+            <p class="mt-3">{{ product.descricao }}</p>
+            <p><strong>Estoque disponível:</strong> {{ product.quantidade }}</p>
+
+            {% if product.quantidade > 0 %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3 col-4">
+                    <label for="quantidade" class="form-label">Quantidade:</label>
+                    <input type="number" name="quantidade" id="quantidade" value="1" min="1" max="{{ product.quantidade }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+            </form>
+            {% else %}
+                <div class="alert alert-warning mt-3">Produto fora de estoque</div>
+            {% endif %}
+        </div>
     </div>
+</div>
     
   {% endblock %}
