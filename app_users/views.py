@@ -5,16 +5,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 
 
-def editar_cliente(request,id):
+def cliente_editar(request,id):
     cliente = get_object_or_404(Cliente,id=id)
    
     if request.method == 'POST':
-        form = UserForm(request.POST,request.FILES,instance=cliente)
+        form = ClienteForm(request.POST,request.FILES,instance=cliente)
         if form.is_valid():
             form.save()
             return redirect('perfil')
     else:
-        form = UserForm(instance=cliente)
+        form = ClienteForm(instance=cliente)
 
     return render(request,'users/cliente_form.html',{'form':form})
 

@@ -5,5 +5,47 @@
   {% endblock %}
 
   {% block content %} 
-  
+  <div class="container mt-5">
+      <h2 class="mb-4">Meu Perfil</h2>
+
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card text-center shadow-sm mb-4 p-3">
+                      <img src="{{ cliente.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle mb-3" width="150" height="150">
+
+                  <h5 class="mb-0">{{ user.username }}</h5>
+                  <p class="text-muted">{{ cliente.nome }} {{ cliente.sobrenome }}</p>
+
+                  <p><strong>Email:</strong> {{ user.email }}</p>
+                      <p><strong>Telefone:</strong> {{ cliente.celular }}</p>
+                      <p><strong>Endereço:</strong> {{ cliente.endereco }}</p>
+
+                  <a href="{% url 'cliente_editar' cliente.id %}" class="btn btn-primary btn-sm mt-2">Editar Perfil</a>
+                  <a href="{% url 'logout' %}" class="btn btn-outline-secondary btn-sm mt-2">Sair</a>
+              </div>
+          </div>
+
+          <div class="col-md-8">
+              <div class="card shadow-sm mb-4 p-3">
+                  <h5 class="card-title mb-3">Últimos Pedidos</h5>
+                  {% if pedidos %}
+                      <ul class="list-group">
+                          {% for pedido in pedidos %}
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                      <div><strong>Pedido #{{ pedido.id }}</strong></div>
+                                      <small>{{ pedido.data_pedido|date:"d/m/Y" }}</small>
+                                  </div>
+                                  <span class="badge bg-success">R$ {{ pedido.total }}</span>
+                              </li>
+                          {% endfor %}
+                      </ul>
+                      <a href="{% url 'meus_pedidos' %}" class="btn btn-link mt-3">Ver todos os pedidos</a>
+                  {% else %}
+                      <p class="text-muted">Nenhum pedido realizado ainda.</p>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </div>
   {% endblock %}

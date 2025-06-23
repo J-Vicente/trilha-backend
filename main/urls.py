@@ -27,6 +27,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('perfil/', perfil, name='perfil'),
     path('cadastro/cliente/',cadastro_cliente, name='cadastro_cliente'),
+    path('cliente/editar/<int:id>/',cliente_editar, name='cliente_editar'),
     path('cadastro/admin/', cadastro_admin, name='cadastro_admin'),
     path('admin/', admin.site.urls),
     path('product/<int:id>/',product,name='product'),  
