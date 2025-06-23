@@ -18,3 +18,9 @@ class Products(models.Model):
     def __str__(self):
         return self.nome
 
+
+class Faturamento(models.Model):
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def __str__(self):
+        return f'Faturamento: R$ {self.total}'

@@ -4,9 +4,11 @@
   {% endblock %}
   
   {% block content %} 
-  <a  class="btn btn-primary mt-auto" href="{% url 'product_criar'%}" style="margin-left: 10px;">Cadastrar novo produto</a>
-
-  <a  class="btn btn-primary mt-auto" href="{% url 'cadastro_admin'%}" style="margin-left: 10px;">Cadastrar novo Admnistrador</a>
+  <div class="d-flex align-items-center mb-4">
+    <a class="btn btn-primary me-2" href="{% url 'product_criar' %}">Cadastrar novo produto</a>
+    <a class="btn btn-primary me-2" href="{% url 'cadastro_admin' %}">Cadastrar novo Administrador</a>
+    <p class="mb-0"><strong>Faturamento total:</strong> R$ {{ faturamento.total }}</p>
+  </div>
 
     <div class="container mt-5">
   <div class="row">
