@@ -38,7 +38,7 @@ def cadastro_admin(request):
         if form.is_valid():
             form.save()
             form = AdminForm()
-            return redirect('login')
+            return redirect('admin_listar')
     else:
         form = AdminForm()
 
@@ -46,8 +46,9 @@ def cadastro_admin(request):
 
 
 def perfil(request):    
+    is_admin = request.user.is_staff
     cliente = Cliente.objects.filter(nome=request.user.username).first()
-    return render(request, "users/perfil.html",{'cliente': cliente})
+    return render(request, "users/perfil.html",{'cliente': cliente, 'is_admin':is_admin})
         
 # -----------------------------------------------------------------------------------------------------    
 def logout_view(request):
