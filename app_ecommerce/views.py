@@ -84,10 +84,22 @@ def product(request, id):
 
 
 def product_listar(request, filtro, tipo):
-    if tipo=='marca':
-        products = Products.objects.filter(marca=filtro)
+    products = Products.objects.all()
+
+    if tipo=='marca':    
+        if filtro == 'Outras':
+            marcas_excluidas = ['Samsung', 'Apple', 'Xiaomi', 'Motorola']
+            products = products.exclude(marca__in=marcas_excluidas)
+        else:
+            products = Products.objects.filter(marca=filtro)
+
     if tipo=='categoria':
-        products = Products.objects.filter(categoria=filtro)
+        if filtro == 'Outras':
+            categorias_excluidas = ['Celulares', 'Laptops', 'Smartwatches', 'Fones']
+            products = products.exclude(categoria__in=categorias_excluidas)
+        else:
+            products = Products.objects.filter(categoria=filtro)
+
     itens_por_pagina = 3
     paginador = Paginator(products, itens_por_pagina)  
     pagina = request.GET.get('page')

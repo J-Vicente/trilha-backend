@@ -27,7 +27,7 @@ class ClienteForm(ModelForm):
 class AdminForm(ModelForm):
 
     class Meta:       
-        model = Cliente
+        model = Administrador
         fields = '__all__'
         widgets = {
             'nome' : forms.TextInput(attrs={'class': 'form-control' }),

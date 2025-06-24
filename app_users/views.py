@@ -45,11 +45,13 @@ def cadastro_admin(request):
     return render(request, "users/admin_form.html", {'form': form})
 
 
-def perfil(request):    
-    is_admin = request.user.is_staff
+def perfil_cliente(request):    
     cliente = Cliente.objects.filter(nome=request.user.username).first()
-    return render(request, "users/perfil.html",{'cliente': cliente, 'is_admin':is_admin})
+    return render(request, "users/perfil_cliente.html",{'cliente': cliente})
         
+def perfil_admin(request):    
+    admin = Administrador.objects.filter(nome=request.user.username).first()
+    return render(request, "users/perfil_admin.html",{'admin': admin})
 # -----------------------------------------------------------------------------------------------------    
 def logout_view(request):
     logout(request)  

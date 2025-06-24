@@ -11,6 +11,7 @@ class Cliente(models.Model):
     foto_perfil = models.ImageField(upload_to='images')
     celular = models.CharField(max_length=11)
     cpf = models.CharField(max_length=14)
+    is_admin = models.BooleanField(default=False)
     # endereco = models.CharField(max_length=200)
     # estado = models.CharField(max_length=2, choices=ESTADOS)
     # cep = models.CharField(max_length=9)
@@ -33,7 +34,9 @@ class Administrador(models.Model):
     email = models.EmailField()
     foto_perfil = models.ImageField(upload_to='images')
     cpf = models.CharField(max_length=14)
+    celular = models.CharField(max_length=11)
     usuario = models.ForeignKey(User,on_delete=models.CASCADE, null=True,blank=True)
+    is_admin= models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         novo_usuario = User.objects.create_user(self.nome, self.email, self.senha)
